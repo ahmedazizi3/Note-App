@@ -1,6 +1,7 @@
 package azizi.ahmed.note.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -137,7 +138,13 @@ fun NoteScreen(
                     NoteCard(
                         title = note.title,
                         details = note.details,
-                        noteAppGrayColor = noteAppGrayColor
+                        noteAppGrayColor = noteAppGrayColor,
+                        onNoteClicked = {
+                            onRemoveNote(
+                                note
+                            )
+                        },
+                        note = note
                     )
                 }
             }

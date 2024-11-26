@@ -11,7 +11,6 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun AddingButton(
-    modifier: Modifier = Modifier,
     noteAppGrayColor: Color ,
     onClick: () -> Unit,
     text: String

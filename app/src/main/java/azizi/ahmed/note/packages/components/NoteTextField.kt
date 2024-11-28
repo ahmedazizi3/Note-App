@@ -47,11 +47,10 @@ fun NoteTextField(
                 unfocusedBorderColor = Color.Transparent,
                 unfocusedLabelColor = noteAppGrayColor,
                 focusedLabelColor = noteAppGrayColor,
-                unfocusedTextColor = Color.Black,
-                focusedTextColor = Color.Black,
+                unfocusedTextColor = noteAppGrayColor,
+                focusedTextColor = noteAppGrayColor,
                 cursorColor = noteAppGrayColor
         )
-
     )
 }
 

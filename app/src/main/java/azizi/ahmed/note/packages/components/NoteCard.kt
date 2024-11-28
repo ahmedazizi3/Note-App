@@ -1,4 +1,4 @@
-package azizi.ahmed.note.components
+package azizi.ahmed.note.packages.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -22,7 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import azizi.ahmed.note.model.Note
+import azizi.ahmed.note.packages.model.Note
 
 @Composable
 fun NoteCard(

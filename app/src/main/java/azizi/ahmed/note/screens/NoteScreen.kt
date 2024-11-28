@@ -1,5 +1,6 @@
 package azizi.ahmed.note.screens
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -24,14 +25,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import azizi.ahmed.note.components.AddingButton
-import azizi.ahmed.note.components.NoteCard
-import azizi.ahmed.note.components.NoteTextField
-import azizi.ahmed.note.data.NoteData
-import azizi.ahmed.note.model.Note
+import azizi.ahmed.note.packages.components.AddingButton
+import azizi.ahmed.note.packages.components.NoteCard
+import azizi.ahmed.note.packages.components.NoteTextField
+import azizi.ahmed.note.packages.model.Note
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -48,6 +47,9 @@ fun NoteScreen(
         mutableStateOf("")
     }
     val noteAppGrayColor: Color = Color(0xFF9199A0)
+    var titleExist by remember {
+        mutableStateOf(false)
+    }
 
 
 
@@ -91,14 +93,21 @@ fun NoteScreen(
 
             Spacer(modifier = modifier.height(20.dp))
 
-            NoteTextField(
-                noteAppGrayColor = noteAppGrayColor,
-                text = details,
-                onValueChange = {
-                    details = it
-                },
-                label = "Details"
-            )
+            if (title.isNotEmpty()) {
+                titleExist = !titleExist
+                AnimatedVisibility(
+                    visible = titleExist
+                ) {
+                    NoteTextField(
+                        noteAppGrayColor = noteAppGrayColor,
+                        text = details,
+                        onValueChange = {
+                            details = it
+                        },
+                        label = "Details"
+                    )
+                }
+            }
 
             Spacer(modifier = modifier.height(20.dp))
 
@@ -151,12 +160,12 @@ fun NoteScreen(
     }
 }
 
-@Preview
-@Composable
-private fun NoteScreenPreview() {
-    NoteScreen(
-        notes = NoteData().loadNotes(),
-        onAddNote = {},
-        onRemoveNote = {}
-    )
-}
+//@Preview
+//@Composable
+//private fun NoteScreenPreview() {
+//    NoteScreen(
+//        notes = NoteData().loadNotes(),
+//        onAddNote = {},
+//        onRemoveNote = {}
+//    )
+//}

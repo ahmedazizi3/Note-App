@@ -1,4 +1,4 @@
-package azizi.ahmed.note.components
+package azizi.ahmed.note.packages.components
 
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.OutlinedTextField
@@ -43,13 +43,16 @@ fun NoteTextField(
                 )
             },
         colors = OutlinedTextFieldDefaults.colors(
-            focusedBorderColor = Color.Transparent,
-            unfocusedBorderColor = Color.Transparent,
-            unfocusedLabelColor = noteAppGrayColor,
-            focusedLabelColor = noteAppGrayColor,
-            unfocusedTextColor = Color.Black,
-            focusedTextColor = Color.Black
+                focusedBorderColor = Color.Transparent,
+                unfocusedBorderColor = Color.Transparent,
+                unfocusedLabelColor = noteAppGrayColor,
+                focusedLabelColor = noteAppGrayColor,
+                unfocusedTextColor = Color.Black,
+                focusedTextColor = Color.Black,
+                cursorColor = noteAppGrayColor
         )
 
     )
 }
+
+

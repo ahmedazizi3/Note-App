@@ -7,11 +7,15 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import azizi.ahmed.note.screens.NoteScreen
-import azizi.ahmed.note.screens.NoteViewModel
+import azizi.ahmed.note.packages.view_model.NoteViewModel
 import azizi.ahmed.note.ui.theme.NoteTheme
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +27,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val noteList = noteViewModel.getAllNotes()
+                    val noteList = noteViewModel.noteList.collectAsState().value
 
                     NoteScreen(
                         notes = noteList,
@@ -31,9 +35,8 @@ class MainActivity : ComponentActivity() {
                             noteViewModel.addNote(it)
                         },
                         onRemoveNote = {
-                            noteViewModel.removeNote(it)
+                            noteViewModel.deleteNote(it)
                         }
-
                     )
                 }
             }

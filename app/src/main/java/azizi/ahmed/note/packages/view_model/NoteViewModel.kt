@@ -13,7 +13,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NoteViewModel @Inject constructor(private val repository: NoteRepository): ViewModel() {
-//    private var noteList = mutableStateListOf<Note>()
 
     private val _noteList = MutableStateFlow<List<Note>>(emptyList())
     val noteList = _noteList.asStateFlow()

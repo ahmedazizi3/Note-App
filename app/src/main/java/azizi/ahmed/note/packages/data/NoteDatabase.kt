@@ -11,5 +11,4 @@ import azizi.ahmed.note.packages.util.IdConverter
 @TypeConverters(IdConverter::class)
 abstract class NoteDatabase: RoomDatabase() {
     abstract fun noteDao(): NoteDatabaseDao
-
 }

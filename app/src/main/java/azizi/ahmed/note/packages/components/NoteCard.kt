@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
@@ -20,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import azizi.ahmed.note.packages.model.Note
@@ -55,7 +57,9 @@ fun NoteCard(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column(
-                modifier = modifier.fillMaxHeight()
+                modifier = modifier
+                    .fillMaxHeight()
+                    .width(320.dp)
             ) {
                 Text(
                     text = title,
@@ -82,13 +86,5 @@ fun NoteCard(
     }
 }
 
-//@Preview(showBackground = true)
-//@Composable
-//private fun NoteCardPreview() {
-//    NoteCard(
-//        title = "Note 1",
-//        details = "This is the first note",
-//        noteAppGrayColor = Color(0xFF9199A0)
-//    )
-//
-//}
+
+

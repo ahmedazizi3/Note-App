@@ -7,11 +7,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
-import azizi.ahmed.note.screens.NoteScreen
-import azizi.ahmed.note.packages.view_model.NoteViewModel
+import azizi.ahmed.note.packages.navigation.Navigation
 import azizi.ahmed.note.ui.theme.NoteTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,23 +18,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val noteViewModel: NoteViewModel = viewModel()
             NoteTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val noteList = noteViewModel.noteList.collectAsState().value
-
-                    NoteScreen(
-                        notes = noteList,
-                        onAddNote = {
-                            noteViewModel.addNote(it)
-                        },
-                        onRemoveNote = {
-                            noteViewModel.deleteNote(it)
-                        }
-                    )
+                    Navigation()
                 }
             }
         }

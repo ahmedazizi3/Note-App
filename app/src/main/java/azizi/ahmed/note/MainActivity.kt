@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import azizi.ahmed.note.packages.navigation.Navigation
+import azizi.ahmed.note.packages.navigation.NoteNavigation
 import azizi.ahmed.note.ui.theme.NoteTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,10 +23,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Navigation()
+                    NoteNavigation()
                 }
             }
         }
     }
 }
-

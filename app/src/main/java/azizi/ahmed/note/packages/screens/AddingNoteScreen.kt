@@ -49,7 +49,7 @@ fun AddingNoteScreen(
     var details by remember {
         mutableStateOf("")
     }
-    val noteAppGrayColor: Color = Color(0xFF9199A0)
+    val noteAppGrayColor: Color = Color(0xFF005784)
 
 
     Scaffold(

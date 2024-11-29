@@ -39,7 +39,7 @@ fun NoteScreen(
     onRemoveNote: (Note) -> Unit = {},
     navigateToAddANote: () -> Unit = {}
 ) {
-    val noteAppGrayColor: Color = Color(0xFF9199A0)
+    val noteAppGrayColor: Color = Color(0xFF005784)
 
 
     Scaffold(

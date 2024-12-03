@@ -10,9 +10,9 @@ import javax.inject.Inject
 
 class NoteRepository @Inject constructor(private val noteDatabaseDao: NoteDatabaseDao) {
     suspend fun addNote(note: Note) = noteDatabaseDao.addNote(note)
-    suspend fun updateNOte(note: Note) = noteDatabaseDao.updateNote(note)
+    suspend fun updateNote(note: Note) = noteDatabaseDao.updateNote(note)
     suspend fun deleteNote(note: Note) = noteDatabaseDao.deleteNote(note)
-    suspend fun deleteAllNotes() = noteDatabaseDao.deleteAllNotes()
+//    suspend fun deleteAllNotes() = noteDatabaseDao.deleteAllNotes()
     fun getAllNotes(): Flow<List<Note>> = noteDatabaseDao
         .getAllNotes()
         .flowOn(Dispatchers.IO)

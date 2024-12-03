@@ -15,7 +15,8 @@ fun NoteTextField(
     noteAppGrayColor: Color,
     text: String,
     onValueChange: (String) -> Unit,
-    label: String
+    label: String,
+    isSingleLine: Boolean
 ) {
     OutlinedTextField(
         value = text,
@@ -35,7 +36,8 @@ fun NoteTextField(
                 unfocusedTextColor = noteAppGrayColor,
                 focusedTextColor = noteAppGrayColor,
                 cursorColor = noteAppGrayColor
-        )
+        ),
+        singleLine = isSingleLine
     )
 }
 

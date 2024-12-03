@@ -38,19 +38,15 @@ import azizi.ahmed.note.packages.model.Note
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddingNoteScreen(
+fun EditScreen(
     modifier: Modifier = Modifier,
-    onAddNote: (Note) -> Unit = {},
+    note: Note?,
+    onEditNote: (Note) -> Unit = {},
     navigateBack: () -> Unit
 ) {
-    var title by remember {
-        mutableStateOf("")
-    }
-    var details by remember {
-        mutableStateOf("")
-    }
+    var editedTitle by remember { mutableStateOf(note?.title ?: "") }
+    var editedDetails by remember { mutableStateOf(note?.details ?: "") }
     val noteAppGrayColor: Color = Color(0xFF005784)
-
 
     Scaffold(
         modifier = modifier
@@ -60,7 +56,7 @@ fun AddingNoteScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = "Add Note",
+                        text = if (note == null) "Add Note" else "Edit Note", // Change the title based on whether it's new or editing
                         fontWeight = FontWeight.Bold,
                         fontSize = 30.sp,
                         color = Color.White
@@ -86,18 +82,19 @@ fun AddingNoteScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    if (title.isNotEmpty() && details.isNotEmpty()) {
-                        // Add to the list
-                        onAddNote(
-                            Note(
-                                title = title,
-                                details = details
-                            )
+                    if (editedTitle.isNotEmpty() && editedDetails.isNotEmpty()) {
+                        // Check if note is being updated or added
+                        val updatedNote = note?.copy(
+                            title = editedTitle,
+                            details = editedDetails
+                        ) ?: Note(
+                            title = editedTitle,
+                            details = editedDetails
                         )
-                        title = ""
-                        details = ""
+
+                        onEditNote(updatedNote)  // Pass the updated note
+                        navigateBack()
                     }
-                    navigateBack()
                 },
                 shape = CircleShape,
                 containerColor = noteAppGrayColor,
@@ -112,7 +109,6 @@ fun AddingNoteScreen(
                     )
                 }
             )
-
         }
     ) {
         Column(
@@ -130,9 +126,9 @@ fun AddingNoteScreen(
                 NoteTextField(
                     modifier = modifier.fillMaxSize(),
                     noteAppGrayColor = noteAppGrayColor,
-                    text = title,
+                    text = editedTitle,
                     onValueChange = {
-                        title = it
+                        editedTitle = it
                     },
                     label = "Title",
                     isSingleLine = true
@@ -146,16 +142,13 @@ fun AddingNoteScreen(
             NoteTextField(
                 modifier = modifier.fillMaxSize(),
                 noteAppGrayColor = noteAppGrayColor,
-                text = details,
+                text = editedDetails,
                 onValueChange = {
-                    details = it
+                    editedDetails = it
                 },
                 label = "Details",
                 isSingleLine = false
             )
-
         }
     }
 }
-
-

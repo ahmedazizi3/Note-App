@@ -37,6 +37,7 @@ fun NoteScreen(
     modifier: Modifier = Modifier,
     notes: List<Note>,
     onRemoveNote: (Note) -> Unit = {},
+    navigateToEditNote: (Note) -> Unit = {},
     navigateToAddANote: () -> Unit = {}
 ) {
     val noteAppGrayColor: Color = Color(0xFF005784)
@@ -103,12 +104,15 @@ fun NoteScreen(
                         title = note.title,
                         details = note.details,
                         noteAppGrayColor = noteAppGrayColor,
-                        onNoteClicked = {
+                        onDeleteClicked = {
                             onRemoveNote(
                                 note
                             )
                         },
-                        note = note
+                        note = note,
+                        onEditClicked = {
+                            navigateToEditNote(note)
+                        }
                     )
                 }
             }

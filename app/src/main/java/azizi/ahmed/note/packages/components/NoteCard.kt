@@ -21,7 +21,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import azizi.ahmed.note.packages.model.Note
@@ -32,7 +31,8 @@ fun NoteCard(
     title: String,
     details: String,
     noteAppGrayColor: Color,
-    onNoteClicked: (Note) -> Unit,
+    onDeleteClicked: (Note) -> Unit,
+    onEditClicked: (Note) -> Unit = {},
     note: Note
 ) {
     Card(
@@ -40,7 +40,10 @@ fun NoteCard(
         modifier = modifier
             .fillMaxWidth()
             .background(Color.White)
-            .padding(8.dp),
+            .padding(8.dp)
+            .clickable {
+                onEditClicked(note)
+            },
         colors = CardDefaults.cardColors(
             containerColor = noteAppGrayColor
         ),
@@ -79,7 +82,7 @@ fun NoteCard(
                 contentDescription = null,
                 tint = Color.White,
                 modifier = modifier.clickable {
-                    onNoteClicked(note)
+                    onDeleteClicked(note)
                 }
             )
         }

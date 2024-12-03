@@ -15,11 +15,11 @@ interface NoteDatabaseDao {
     @Query("select * from NotesTable")
     fun getAllNotes(): Flow<List<Note>>
 
-    @Query("select * from NotesTable where id = :id")
-    suspend fun getNoteById(id: String): Note
+//    @Query("select * from NotesTable where id = :id")
+//    suspend fun getNoteById(id: String): Note
 
-    @Query("delete from NotesTable")
-    suspend fun deleteAllNotes()
+//    @Query("delete from NotesTable")
+//    suspend fun deleteAllNotes()
 
     @Delete
     suspend fun deleteNote(note: Note)

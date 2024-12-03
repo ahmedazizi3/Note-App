@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import azizi.ahmed.note.packages.screens.AddingNoteScreen
+import azizi.ahmed.note.packages.screens.EditScreen
 import azizi.ahmed.note.packages.screens.NoteScreen
 import azizi.ahmed.note.packages.view_model.NoteViewModel
 
@@ -28,6 +29,9 @@ fun NoteNavigation() {
                 notes = noteList,
                 onRemoveNote = {
                     noteViewModel.deleteNote(it)
+                },
+                navigateToEditNote = { note ->
+                    navController.navigate(ScreensHolder.EditScreen.createRoute(note.id.toString()))
                 }
             ) {
                 navController.navigate(ScreensHolder.AddingNoteScreen.route)
@@ -46,6 +50,26 @@ fun NoteNavigation() {
                 }
             )
         }
+
+        composable(
+            route = ScreensHolder.EditScreen.route
+        ) { backStackEntry ->
+            val noteId = backStackEntry.arguments?.getString("noteId") // Assuming you pass an ID
+            val selectedNote = noteViewModel.getNoteById(noteId)
+
+            if (selectedNote != null) {
+                EditScreen(
+                    note = selectedNote,
+                    onEditNote = {
+                        noteViewModel.updateNote(it)
+                    },
+                    navigateBack = {
+                        navController.popBackStack()
+                    }
+                )
+            }
+        }
+
     }
 
 }

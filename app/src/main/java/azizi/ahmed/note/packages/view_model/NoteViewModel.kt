@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class NoteViewModel @Inject constructor(private val repository: NoteRepository): ViewModel() {
+class NoteViewModel @Inject constructor(private val repository: NoteRepository) : ViewModel() {
 
     private val _noteList = MutableStateFlow<List<Note>>(emptyList())
     val noteList = _noteList.asStateFlow()
@@ -30,9 +30,10 @@ class NoteViewModel @Inject constructor(private val repository: NoteRepository):
             repository.addNote(note)
         }
     }
+
     fun updateNote(note: Note) {
         viewModelScope.launch {
-            repository.updateNOte(note)
+            repository.updateNote(note)  // Ensure this method updates the note in the database
         }
     }
 
@@ -42,4 +43,7 @@ class NoteViewModel @Inject constructor(private val repository: NoteRepository):
         }
     }
 
+    fun getNoteById(noteId: String?): Note? {
+        return _noteList.value.find { it.id.toString() == noteId }
+    }
 }

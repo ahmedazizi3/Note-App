@@ -3,7 +3,7 @@ package azizi.ahmed.note.packages.di
 import android.content.Context
 import androidx.room.Room
 import azizi.ahmed.note.packages.data.NoteDatabase
-import azizi.ahmed.note.packages.data.NoteDatabaseDao
+import azizi.ahmed.note.packages.data.NoteDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,11 +13,11 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+object NoteAppModule {
 
     @Singleton
     @Provides
-    fun provideNoteDatabaseDao(noteDatabase: NoteDatabase): NoteDatabaseDao = noteDatabase.noteDao()
+    fun provideNoteDao(noteDatabase: NoteDatabase): NoteDao = noteDatabase.noteDao()
 
     @Singleton
     @Provides

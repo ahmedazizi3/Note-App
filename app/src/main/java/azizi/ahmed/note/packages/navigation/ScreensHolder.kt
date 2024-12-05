@@ -8,4 +8,5 @@ sealed class ScreensHolder(
     object EditScreen : ScreensHolder("editScreen/{noteId}") {
         fun createRoute(noteId: String): String = "editScreen/$noteId"
     }
+    object SplashScreen: ScreensHolder("splashScreen")
 }

@@ -82,6 +82,8 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation (libs.kotlinx.coroutines.play.services)
 
+    // Splash Screen dependency
 
+    implementation(libs.androidx.core.splashscreen)
 
 }

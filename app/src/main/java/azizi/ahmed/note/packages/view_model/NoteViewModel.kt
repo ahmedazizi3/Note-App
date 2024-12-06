@@ -25,25 +25,30 @@ class NoteViewModel @Inject constructor(private val repository: NoteRepository) 
         }
     }
 
+//    Create Note
     fun addNote(note: Note) {
         viewModelScope.launch {
             repository.addNote(note)
         }
     }
 
+//    Update Note
     fun updateNote(note: Note) {
         viewModelScope.launch {
-            repository.updateNote(note)  // Ensure this method updates the note in the database
+            repository.updateNote(note)
         }
     }
 
+//    Delete Note
     fun deleteNote(note: Note) {
         viewModelScope.launch {
             repository.deleteNote(note)
         }
     }
 
+//    Read Note
     fun getNoteById(noteId: String?): Note? {
         return _noteList.value.find { it.id.toString() == noteId }
     }
+
 }

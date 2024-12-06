@@ -8,6 +8,7 @@ import java.util.UUID
 
 @Entity(tableName = "NotesTable")
 data class Note(
+
     @PrimaryKey
     val id: UUID = UUID.randomUUID(),
 
@@ -16,4 +17,5 @@ data class Note(
 
     @ColumnInfo(name = "NoteDetails")
     val details: String
+
 )

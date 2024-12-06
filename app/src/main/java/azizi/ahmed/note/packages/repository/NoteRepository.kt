@@ -9,12 +9,14 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class NoteRepository @Inject constructor(private val noteDao: NoteDao) {
+
     suspend fun addNote(note: Note) = noteDao.addNote(note)
     suspend fun updateNote(note: Note) = noteDao.updateNote(note)
     suspend fun deleteNote(note: Note) = noteDao.deleteNote(note)
-//    suspend fun deleteAllNotes() = noteDatabaseDao.deleteAllNotes()
-    fun getAllNotes(): Flow<List<Note>> = noteDao
-        .getAllNotes()
-        .flowOn(Dispatchers.IO)
-        .conflate()
+    fun getAllNotes(): Flow<List<Note>> =
+        noteDao
+            .getAllNotes()
+            .flowOn(Dispatchers.IO)
+            .conflate()
+
 }

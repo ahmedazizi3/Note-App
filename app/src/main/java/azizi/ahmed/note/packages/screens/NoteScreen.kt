@@ -1,5 +1,6 @@
 package azizi.ahmed.note.packages.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -24,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -41,6 +43,7 @@ fun NoteScreen(
     navigateToAddANote: () -> Unit = {}
 ) {
     val noteAppGrayColor: Color = Color(0xFF005784)
+    val context = LocalContext.current
 
 
     Scaffold(
@@ -108,6 +111,7 @@ fun NoteScreen(
                             onRemoveNote(
                                 note
                             )
+                            Toast.makeText(context, "Note Deleted", Toast.LENGTH_SHORT).show()
                         },
                         note = note,
                         onEditClicked = {

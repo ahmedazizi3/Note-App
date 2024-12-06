@@ -10,5 +10,7 @@ import azizi.ahmed.note.packages.util.IdConverter
 @Database(entities = [Note::class], version = 1, exportSchema = false)
 @TypeConverters(IdConverter::class)
 abstract class NoteDatabase: RoomDatabase() {
+
     abstract fun noteDao(): NoteDao
+
 }

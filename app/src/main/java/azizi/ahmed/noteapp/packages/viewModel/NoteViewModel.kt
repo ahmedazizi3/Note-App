@@ -1,0 +1,54 @@
+package azizi.ahmed.noteapp.packages.viewModel
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import azizi.ahmed.noteapp.packages.model.Note
+import azizi.ahmed.noteapp.packages.repository.NoteRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@HiltViewModel
+class NoteViewModel @Inject constructor(private val repository: NoteRepository) : ViewModel() {
+
+    private val _noteList = MutableStateFlow<List<Note>>(emptyList())
+    val noteList = _noteList.asStateFlow()
+
+    init {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getAllNotes().collect { listOfNotes ->
+                _noteList.value = listOfNotes
+            }
+        }
+    }
+
+//    Create Note
+    fun addNote(note: Note) {
+        viewModelScope.launch {
+            repository.addNote(note)
+        }
+    }
+
+//    Update Note
+    fun updateNote(note: Note) {
+        viewModelScope.launch {
+            repository.updateNote(note)
+        }
+    }
+
+//    Delete Note
+    fun deleteNote(note: Note) {
+        viewModelScope.launch {
+            repository.deleteNote(note)
+        }
+    }
+
+//    Read Note
+    fun getNoteById(noteId: String?): Note? {
+        return _noteList.value.find { it.id.toString() == noteId }
+    }
+
+}

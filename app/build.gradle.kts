@@ -9,15 +9,15 @@ plugins {
 }
 
 android {
-    namespace = "azizi.ahmed.note"
-    compileSdk = 35
+    namespace = "azizi.ahmed.noteapp"
+    compileSdk = 36
 
     defaultConfig {
-        applicationId = "azizi.ahmed.note"
+        applicationId = "azizi.ahmed.noteapp"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        targetSdk = 35
+        versionCode = 5
+        versionName = "1.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -45,9 +45,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.navigation.compose)
 
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -65,25 +63,27 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+//    Navigation
+    implementation(libs.androidx.navigation.compose)
 
-//Hilt-Dagger
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+
+//    Hilt-Dagger
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
-//Room
+//    Room
     implementation(libs.androidx.room.runtime)
-
-// To use Kotlin annotation processing tool (kapt) MUST HAVE!
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
 
-// Coroutines
+//    Coroutines
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
     implementation (libs.kotlinx.coroutines.play.services)
 
     // Splash Screen dependency
-
     implementation(libs.androidx.core.splashscreen)
 
 }

@@ -1,15 +1,51 @@
+# Gradle
+.gradle/
+**/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Kotlin
+.kotlin/
+
+# Android Studio / IntelliJ
+.idea/
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+
+# Local machine config
 local.properties
+*.properties.local
+
+# Android native/generated files
+.externalNativeBuild/
+.cxx/
+captures/
+
+# Build outputs
+*.apk
+*.ap_
+*.aab
+*.dex
+*.class
+/app/debug/
+/app/release/
+/release/
+
+# Signing keys and credentials
+*.jks
+*.keystore
+*.p12
+*.pem
+*.key
+*.cer
+*.der
+key.properties
+keystore.properties
+secrets.properties
+
+# Logs and crash dumps
+*.log
+hs_err_pid*
+replay_pid*
+
+# OS files
+.DS_Store
+Thumbs.db
